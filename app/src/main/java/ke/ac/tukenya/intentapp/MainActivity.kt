@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         this.tvPhone = findViewById(R.id.etPhone)
+
+        reqSmsPermissions()
     }
 
     fun goToProfiles(view: View) {
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun call() {
-        // Implicit inter.
+        // Implicit intent.
         val phoneNo = this.tvPhone.text
         val call = Intent(Intent.ACTION_CALL)
         call.setData(Uri.parse("tel:$phoneNo"))
@@ -78,5 +79,12 @@ class MainActivity : AppCompatActivity() {
                 Log.w(TAG, "onRequestPermissionsResult: Call phone permission rejected")
             }
         }
+    }
+
+    fun reqSmsPermissions() {
+        // HINT
+        // Manifest.permission.SEND_SMS
+        // Manifest.permission.READ_SMS
+        // Manifest.permission.RECEIVE_SMS
     }
 }
